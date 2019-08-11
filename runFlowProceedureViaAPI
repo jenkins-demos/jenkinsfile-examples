@@ -14,10 +14,10 @@ pipeline {
            
            sh """
                echo "hello stu"
-               curl -D- -u $vPassword:$vUser \
+               RETS=`curl -D- -u $vPassword:$vUser \
                 --insecure -X POST "${FLOWSERVER}/rest/v1.0/jobs?request=runProcedure&projectName=Default&procedureName=Echo" \
                 -H "accept: application/json" \
-                -d \'{"actualParameter":[{"actualParameterName":"arg1","value":"${params.argument1}"}]}\'"""
+                -d \'{"actualParameter":[{"actualParameterName":"arg1","value":"${params.argument1}"}]}\'`"""
         
         }   
       }
