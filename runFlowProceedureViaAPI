@@ -1,6 +1,10 @@
 pipeline {
     agent any
    
+  parameters{
+        choice(choices: ['dev', 'prd', 'ist'], description: 'What environment ?', name: 'envtarget')
+        string(defaultValue: "MyCompoenent", description: 'Component Name ?', name: 'component')
+    }
   stages{
     stage('api call'){
       environment {
