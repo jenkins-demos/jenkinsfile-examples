@@ -3,6 +3,7 @@ pipeline{
     agent any
     environment {
         FLOW_CREDS = credentials('flow-admin-creds')
+        FLOW_SVR_URL = credentials('flow-server-url')
     }
     stages{
         stage('build'){
@@ -32,7 +33,7 @@ pipeline{
         stage('deploy'){
             steps{
 
-                runFlowProc(flowCreds: "${env.FLOW_CREDS_USR}:${env.FLOW_CREDS_PSW}", flowServer: "https://ps9.ecloud-kdemo.com")
+                runFlowProc(flowCreds: "${env.FLOW_CREDS_USR}:${env.FLOW_CREDS_PSW}", flowServer: "${env.FLOW_SVR_URL}")
 
             }
         }
