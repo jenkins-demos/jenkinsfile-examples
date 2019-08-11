@@ -13,10 +13,11 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'flow-admin-creds', passwordVariable: 'vPassword', usernameVariable: 'vUser')]) {
            
            sh """
-               RES=$(curl -D- -u $vPassword:$vUser \
+               ecco "hello stu"
+               curl -D- -u $vPassword:$vUser \
                 --insecure -X POST "${FLOWSERVER}/rest/v1.0/jobs?request=runProcedure&projectName=Default&procedureName=Echo" \
                 -H "accept: application/json" \
-                -d \'{"actualParameter":[{"actualParameterName":"arg1","value":"${params.argument1}"}]}\')"""
+                -d \'{"actualParameter":[{"actualParameterName":"arg1","value":"${params.argument1}"}]}\'"""
         
         }   
       }
