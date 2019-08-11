@@ -29,8 +29,7 @@ pipeline{
         stage('deploy'){
             steps{
                 step {
-                    echo "deploy"
-                    def result = runFlowProc(flowCreds: "sbrown:sbrown", flowServer: "https://ps9.ecloud-kdemo.com")
+                    runFlowProc(flowCreds: "sbrown:sbrown", flowServer: "https://ps9.ecloud-kdemo.com")
                 }
             }
         }
