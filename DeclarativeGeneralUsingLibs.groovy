@@ -29,7 +29,7 @@ pipeline{
         stage('deploy'){
             steps{
                 echo "deploy"
-                runFlowProc()
+                runFlowProc(creds: "sbrown:sbrown", flowSvr: "https://ps9.ecloud-kdemo.com" )
             }
         }
     }
