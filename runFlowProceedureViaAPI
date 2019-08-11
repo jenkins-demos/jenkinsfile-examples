@@ -2,8 +2,7 @@ pipeline {
     agent any
    
   parameters{
-        choice(choices: ['dev', 'prd', 'ist'], description: 'What environment ?', name: 'envtarget')
-        string(defaultValue: "MyCompoenent", description: 'Component Name ?', name: 'component')
+        string(defaultValue: "Hello", description: 'Arg1 ? ', name: 'argument1')
     }
   stages{
     stage('api call'){
@@ -13,7 +12,7 @@ pipeline {
       steps{
         withCredentials([usernamePassword(credentialsId: 'flow-admin-creds', passwordVariable: 'vPassword', usernameVariable: 'vUser')]) {
             sh """
-                curl -D- -vvv -u $vPassword:$vUser --insecure -X POST "${FLOWSERVER}/rest/v1.0/jobs?request=runProcedure&projectName=Default&procedureName=Echo" -H "accept: application/json" -d '{"actualParameter":[{"actualParameterName":"arg1","value":"new1234"}]}'
+                curl -D- -vvv -u $vPassword:$vUser --insecure -X POST "${FLOWSERVER}/rest/v1.0/jobs?request=runProcedure&projectName=Default&procedureName=Echo" -H "accept: application/json" -d '{"actualParameter":[{"actualParameterName":${params.arg1},"value":"new1234"}]}'
             """
         
         }   
