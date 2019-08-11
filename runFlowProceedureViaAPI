@@ -16,7 +16,7 @@ pipeline {
                 -H "accept: application/json" \\
                 -d \'{"actualParameter":[{"actualParameterName":"arg1","value":"${params.argument1}"}]}\''''
         
-        echo ${label}
+        echo "${label}"
         }   
       }
     }
