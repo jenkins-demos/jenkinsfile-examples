@@ -2,10 +2,17 @@
 pipeline{
     agent any
     stages{
-        stage('first stage'){
+        stage('build'){
             steps{
                 helloWorldExternal()
             }
+        }
+        stage('test'){
+            echo 'testing'
+        }
+        stage('package'){
+            echo 'packaging'
+
         }
     }
 }
