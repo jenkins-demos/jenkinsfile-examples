@@ -7,9 +7,16 @@ pipeline{
                 helloWorldExternal()
             }
         }
-        stage('test'){
-            steps {
-                echo 'testing'
+        parallel {
+            stage('testone') {
+                steps {
+                    echo 'testing'
+                }
+            }
+            stage('testone') {
+                steps {
+                    echo 'testing'
+                }
             }
         }
         stage('package'){
