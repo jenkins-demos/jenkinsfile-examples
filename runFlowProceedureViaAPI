@@ -11,12 +11,10 @@ pipeline {
       }
       steps{
         withCredentials([usernamePassword(credentialsId: 'flow-admin-creds', passwordVariable: 'vPassword', usernameVariable: 'vUser')]) {
-            def stu=$(sh """
-                curl -D- -vvv -u $vPassword:$vUser \
-                --insecure -X POST "${FLOWSERVER}/rest/v1.0/jobs?request=runProcedure&projectName=Default&procedureName=Echo" \
-                -H "accept: application/json" \
-                -d '{"actualParameter":[{"actualParameterName":"arg1","value":"${params.argument1}"}]}'
-            """)
+            sh label: '', returnStatus: true, script: '''curl -D- -vvv -u $vPassword:$vUser \\
+                --insecure -X POST "${FLOWSERVER}/rest/v1.0/jobs?request=runProcedure&projectName=Default&procedureName=Echo" \\
+                -H "accept: application/json" \\
+                -d \'{"actualParameter":[{"actualParameterName":"arg1","value":"${params.argument1}"}]}\''''
         
         }   
       }
