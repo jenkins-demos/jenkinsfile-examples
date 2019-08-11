@@ -7,15 +7,17 @@ pipeline{
                 helloWorldExternal()
             }
         }
-        parallel {
-            stage('testone') {
-                steps {
-                    echo 'testing'
+        stage('run-tests') {
+            parallel {
+                stage('testone') {
+                    steps {
+                        echo 'testing'
+                    }
                 }
-            }
-            stage('testone') {
-                steps {
-                    echo 'testing'
+                stage('testtwo') {
+                    steps {
+                        echo 'testing'
+                    }
                 }
             }
         }
