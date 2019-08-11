@@ -1,6 +1,9 @@
 @Library('shared-library') _
 pipeline{
     agent any
+    environment {
+        FLOW_CREDS = credentials('flow-admin-creds')
+    }
     stages{
         stage('build'){
             steps{
@@ -29,7 +32,7 @@ pipeline{
         stage('deploy'){
             steps{
 
-                runFlowProc(flowCreds: "sbrown:sbrown", flowServer: "https://ps9.ecloud-kdemo.com")
+                runFlowProc(flowCreds: "${env.FLOW_CREDS_USR}:${env.FLOW_CREDS_PSW}", flowServer: "https://ps9.ecloud-kdemo.com")
 
             }
         }
