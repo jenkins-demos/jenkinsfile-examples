@@ -29,7 +29,7 @@ pipeline{
         stage('deploy'){
             steps{
                 echo "deploy"
-                def buildid=$(runFlowProc(flowCreds: "sbrown:sbrown", flowServer: "https://ps9.ecloud-kdemo.com" ))
+                def result = runFlowProc(flowCreds: "sbrown:sbrown", flowServer: "https://ps9.ecloud-kdemo.com" )
 
             }
         }
