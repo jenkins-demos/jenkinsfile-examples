@@ -32,8 +32,8 @@ pipeline{
         }
         stage('deploy'){
             steps{
-
-                runFlowProc(flowCreds: "${env.FLOW_CREDS_USR}:${env.FLOW_CREDS_PSW}", flowServer: "${env.FLOW_SVR_URL}")
+                def json_args="{\"actualParameter\":[{\"actualParameterName\":\"arg1\",\"value\":\"1234567\"}]}"
+                runFlowProc(flowCreds: "${env.FLOW_CREDS_USR}:${env.FLOW_CREDS_PSW}", flowServer: "${env.FLOW_SVR_URL}" ,jsonArgs: "${json_args}")
 
             }
         }
