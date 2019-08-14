@@ -7,6 +7,7 @@ pipeline{
         PROJ_NAME = 'default'
         PROC_NAME = 'Echo'
         CURL_OPTIONS = '--insecure -vvv'
+        JOBID=""
 
     }
     stages{
@@ -18,9 +19,14 @@ pipeline{
             }
             steps{
 
-
-                runFlowProc(flowCreds: "${env.FLOW_CREDS_USR}:${env.FLOW_CREDS_PSW}", flowServer: "${env.FLOW_SVR_URL}" ,jsonArgs: '${json_args}',procName: '$PROC_NAME', projName: '$PROJ_NAME',curlOptions: '$CURL_OPTIONS')
-
+                script {
+                 JOBID = runFlowProc(flowCreds: "${env.FLOW_CREDS_USR}:${env.FLOW_CREDS_PSW}", flowServer: "${env.FLOW_SVR_URL}", jsonArgs: '${json_args}', procName: '$PROC_NAME', projName: '$PROJ_NAME', curlOptions: '$CURL_OPTIONS')
+                }
+            }
+        }
+        stage('test'){
+            steps{
+                echo "$JOBID"
             }
         }
     }
