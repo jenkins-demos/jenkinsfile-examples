@@ -6,7 +6,7 @@ pipeline{
         FLOW_SVR_URL = credentials('flow-server-url')
         PROJ_NAME = 'default'
         PROC_NAME = 'Echo'
-        CURL_OPTIONS = '--insecure -vvv'
+        CURL_OPTIONS = '"--insecure -vvv"'
         //json_args="{"actualParameter":[{"actualParameterName":"arg1","value":"1234567"}]}"
         //json_args= '{"actualParameter":[{"actualParameterName":"arg1","value":"1234567"}]}'
 
