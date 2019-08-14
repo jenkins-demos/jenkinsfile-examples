@@ -4,6 +4,8 @@ pipeline{
     environment {
         FLOW_CREDS = credentials('flow-admin-creds')
         FLOW_SVR_URL = credentials('flow-server-url')
+        PROC_NAME = 'default'
+        PROC_NAME = 'Echo'
         //json_args="{"actualParameter":[{"actualParameterName":"arg1","value":"1234567"}]}"
         //json_args= '{"actualParameter":[{"actualParameterName":"arg1","value":"1234567"}]}'
 
@@ -41,7 +43,7 @@ pipeline{
             steps{
 
 
-                runFlowProc(flowCreds: "${env.FLOW_CREDS_USR}:${env.FLOW_CREDS_PSW}", flowServer: "${env.FLOW_SVR_URL}" ,jsonArgs: '${json_args}')
+                runFlowProc(flowCreds: "${env.FLOW_CREDS_USR}:${env.FLOW_CREDS_PSW}", flowServer: "${env.FLOW_SVR_URL}" ,jsonArgs: '${json_args}',procName: '$PROC_NAME', projName: '$PROJ_NAME')
 
             }
         }
