@@ -4,7 +4,7 @@ pipeline{
     environment {
         FLOW_CREDS = credentials('flow-admin-creds')
         FLOW_SVR_URL = credentials('flow-server-url')
-        PROC_NAME = 'default'
+        PROJ_NAME = 'default'
         PROC_NAME = 'Echo'
         //json_args="{"actualParameter":[{"actualParameterName":"arg1","value":"1234567"}]}"
         //json_args= '{"actualParameter":[{"actualParameterName":"arg1","value":"1234567"}]}'
